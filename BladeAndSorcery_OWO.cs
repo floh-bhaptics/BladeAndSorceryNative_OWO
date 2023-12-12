@@ -7,20 +7,36 @@ using System.Text;
 using System.Threading.Tasks;
 using HarmonyLib;
 using ThunderRoad;
+using System.Runtime.CompilerServices;
+using static ThunderRoad.GameData;
+using System.Reflection;
 
 namespace BladeAndSorcery_OWO
 {
     public class BladeAndSorcery_OWO : ThunderScript
     {
-        public static TactsuitVR tactsuitVr = new TactsuitVR();
+        public static TactsuitVR tactsuitVr;
+        private Harmony harmony;
 
+        public override void ScriptLoaded(ModManager.ModData modData)
+        {
+            EventManager.OnPlayerPrefabSpawned += new EventManager.PlayerPrefabSpawnedEvent(Initialize);
+            base.ScriptLoaded(modData);
+        }
 
+        public void Initialize()
+        {
+            tactsuitVr = new TactsuitVR();
+
+            this.harmony = new Harmony("com.florianfahrenberger.owo");
+            this.harmony.PatchAll();
+        }
 
         [HarmonyPatch(typeof(BhapticsHandler), "PlayHapticInternal", new Type[] { typeof(float), typeof(float), typeof(BhapticsHandler.FeedbackType), typeof(float), typeof(bool), typeof(bool), typeof(float) })]
         public class bhaptics_PlayBhapticsEffectInternal
         {
-            [HarmonyPostfix]
-            public static void Postfix(BhapticsHandler __instance, float locationAngle, float locationHeight, BhapticsHandler.FeedbackType effect, float intensityMultiplier, bool reflected)
+            [HarmonyPrefix]
+            public static void Prefix(BhapticsHandler __instance, float locationAngle, float locationHeight, BhapticsHandler.FeedbackType effect, float intensityMultiplier, bool reflected)
             {
                 string pattern = effect.ToString();
                 //tactsuitVr.LOG("Original pattern internal: " + pattern + " reflected: " + reflected.ToString() + " Intensity: " + intensityMultiplier.ToString());
@@ -72,7 +88,7 @@ namespace BladeAndSorcery_OWO
 
                 // Melee feedback only triggers on the left hands right now, which is weird
                 // So better shut it off overall.
-                if (pattern.Contains("Melee")) return;
+                //if (pattern.Contains("Melee")) return;
 
                 if (pattern.Contains("DamageVest"))
                 {

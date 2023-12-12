@@ -70,7 +70,7 @@ namespace MyOWOVest
         public string[] getIPsFromFile(string filename)
         {
             List<string> ips = new List<string>();
-            string filePath = Directory.GetCurrentDirectory() + "\\Mods\\BladeAndSorcery_OWO\\" + filename;
+            string filePath = Directory.GetCurrentDirectory() + "\\BladeAndSorcery_Data\\StreamingAssets\\Mods\\BladeAndSorcery_OWO\\" + filename;
             if (File.Exists(filePath))
             {
                 LOG("Manual IP file found: " + filePath);
@@ -118,15 +118,25 @@ namespace MyOWOVest
             OWO.Disconnect();
         }
 
-        public void LOG(string logStr)
+        public static void LOG(string logStr)
         {
-            //MelonLogger.Msg(logStr);
+            try
+            {
+                using (StreamWriter w = File.AppendText("\\BladeAndSorcery_Data\\StreamingAssets\\Mods\\BladeAndSorcery_OWO\\OWOLog_" + DateTime.Now.ToString("yyyyMMdd") + ".log"))
+                {
+                    w.WriteLine(logStr);
+                }
+                //Debug.Log(logStr);
+            }
+            catch (Exception ex)
+            {
+            }
         }
 
         void RegisterAllTactFiles()
         {
 
-            string configPath = Directory.GetCurrentDirectory() + "\\Mods\\BladeAndSorcery_OWO\\OWO";
+            string configPath = Directory.GetCurrentDirectory() + "\\BladeAndSorcery_Data\\StreamingAssets\\Mods\\BladeAndSorcery_OWO\\OWO";
             DirectoryInfo d = new DirectoryInfo(configPath);
             FileInfo[] Files = d.GetFiles("*.owo", SearchOption.AllDirectories);
             for (int i = 0; i < Files.Length; i++)

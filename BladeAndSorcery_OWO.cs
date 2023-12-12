@@ -10,7 +10,7 @@ using ThunderRoad;
 
 namespace BladeAndSorcery_OWO
 {
-    public class BladeAndSorcery_OWO
+    public class BladeAndSorcery_OWO : ThunderScript
     {
         public static TactsuitVR tactsuitVr = new TactsuitVR();
 

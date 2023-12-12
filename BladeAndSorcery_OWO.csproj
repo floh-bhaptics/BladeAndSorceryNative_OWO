@@ -114,9 +114,9 @@
   <PropertyGroup>
     <PostBuildEvent>XCOPY "$(SolutionDir)OWO" "$(TargetDir)\OWO\" /Y /S
 XCOPY "$(SolutionDir)manifest.json" "$(TargetDir)\" /Y
-XCOPY "$(TargetDir)*.dll" "D:\Games\Steam\steamapps\common\Blade &amp; Sorcery\Mods\BladeAndSorcery_OWO\" /Y
-XCOPY "$(TargetDir)manifest.json" "D:\Games\Steam\steamapps\common\Blade &amp; Sorcery\Mods\BladeAndSorcery_OWO\" /Y
-XCOPY "$(TargetDir)OWO.dll" "D:\Games\Steam\steamapps\common\Blade &amp; Sorcery\Mods\BladeAndSorcery_OWO\" /Y
-XCOPY "$(TargetDir)OWO" "D:\Games\Steam\steamapps\common\Blade &amp; Sorcery\Mods\BladeAndSorcery_OWO\OWO\" /Y /S</PostBuildEvent>
+XCOPY "$(TargetDir)*.dll" "D:\Games\Steam\steamapps\common\Blade &amp; Sorcery\BladeAndSorcery_Data\StreamingAssets\Mods\BladeAndSorcery_OWO\" /Y
+XCOPY "$(TargetDir)manifest.json" "D:\Games\Steam\steamapps\common\Blade &amp; Sorcery\BladeAndSorcery_Data\StreamingAssets\Mods\BladeAndSorcery_OWO\" /Y
+XCOPY "$(TargetDir)OWO.dll" "D:\Games\Steam\steamapps\common\Blade &amp; Sorcery\BladeAndSorcery_Data\StreamingAssets\Mods\BladeAndSorcery_OWO\" /Y
+XCOPY "$(TargetDir)OWO" "D:\Games\Steam\steamapps\common\Blade &amp; Sorcery\BladeAndSorcery_Data\StreamingAssets\Mods\BladeAndSorcery_OWO\OWO\" /Y /S</PostBuildEvent>
   </PropertyGroup>
 </Project>

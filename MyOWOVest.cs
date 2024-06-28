@@ -189,7 +189,7 @@ namespace MyOWOVest
 
         public void PlayBackFeedback(string feedback, float intensity = 1.0f)
         {
-            //LOG("Pattern: " +  feedback);
+            // LOG("Playing Pattern: " +  feedback);
             if (FeedbackMap.ContainsKey(feedback))
             {
                 OWO.Send(FeedbackMap[feedback]);
